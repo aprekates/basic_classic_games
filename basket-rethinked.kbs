@@ -1,0 +1,18 @@
+
+INPUT "ΕΠΕΛΕΞΕ ΤΟ ΟΝΟΜΑ ΤΗΣ ΟΜΑΔΑΣ ΣΟΥ: ",OMADASOY$
+INPUT "ΕΠΕΛΕΞΕ ΤΟΝ ΑΝΤΙΠΑΛΟ ΣΟΥ: ",ANTIPALOS$
+PRINT "************* ΑΣ ΞΕΚΙΝΗΣΕΙ ΤΟ ΠΑΙΧΝΙΔΙ ************"
+PRINT OMADASOY$ + " ενάντια "+ ANTIPALOS$
+CENTERJUMP:
+PRINT "TΖΑΜΠΟΛ ΣΤΟ ΚΕΝΤΡΟ"
+DEKTHSTZAMPOL:
+IF RAND() > 3/5  THEN 
+   GOTO ADIPALOS
+ELSE 
+   GOTO OMADASOY
+END IF
+OMADASOY:
+PRINT OMADASOY$
+ 
+ADIPALOS: 
+PRINT ANTIPALOS$
