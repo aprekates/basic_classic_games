@@ -1,0 +1,10 @@
+# Μετατροπή Basketball από VINTAGE BASIC σε BASIC 256
+# από aprekates@sch.gr  
+PRINT "ΩΡΑ ΓΙΑ ΜΠΑΣΚΕΤ" ;
+PRINT "BASKETBALL"
+PRINT 6*2 
+INPUT "ΠΟΙΟ ΕΙΝΑΙ ΤΟ ΟΝΟΜΑ ΤΗΣ ΑΝΤΙΠΑΛΗΣ ΟΜΑΔΑΣ;" , ANTIPALOS$
+PRINT ANTIPALOS$
+PRINT "ΤΖΑΜΠΟΛ!!!"
+IF RAND(1)> 3/5 THEN 
+    PRINT "O 
