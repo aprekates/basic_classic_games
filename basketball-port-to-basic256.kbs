@@ -1,18 +1,21 @@
 # Μετατροπή Basketball από VINTAGE BASIC σε BASIC 256
 # από aprekates@sch.gr  
-PRINT "ΩΡΑ ΓΙΑ ΜΠΑΣΚΕΤ" ;
-PRINT "BASKETBALL"
-PRINT 6*2 
-INPUT "ΠΟΙΟ ΕΙΝΑΙ ΤΟ ΟΝΟΜΑ ΤΗΣ ΑΝΤΙΠΑΛΗΣ ΟΜΑΔΑΣ;" , ANTIPALOS$
-PRINT ANTIPALOS$
+PRINT " ***** ΜΠΑΣΚΕΤ ****** " 
+SAY "BASKET KALATHOSFERISI"
+PRINT ""
+INPUT "ΟΝΟΜΑ ΤΗΣ ΑΝΤΙΠΑΛΗΣ ΟΜΑΔΑΣ: " , ANTIPALOS$
+# PRINT ANTIPALOS$
 PRINT "ΤΖΑΜΠΟΛ!!!"
+SAY "JAMBOL!"
 # Αρχίζει το μέτρημα του χρόνου, P ο παίχτης, Z τύπος του σουτ
-GLOBAL T,P,Z
+# D τύπος άμυνας
+GLOBAL T,P,Z,D
 T = 1
 P = 0  
 Z = 0
+D = 7
 IF RAND > 3/5 THEN
-	PRINT "Η ομάδα του ΗΥ" ;
+	PRINT "Η ομάδα του ΗΥ " ;
 	PRINT ANTIPALOS$ ; 
 	PRINT " πήρε το τζάμπολ"
 	CALL CPU_PLAY()
@@ -28,17 +31,52 @@ ENDIF
 SUBROUTINE HUMAN_PLAY() 
 
 	PRINT "ΠΑΙΖΕΙ Ο ΑΝΘΡΩΠΟΣ"
+	PRINT "PEKSE"
 	P = 0
-	INPUT "ΔΙΑΛΕΞΕ ΣΟΥΤ!!", Z
-	IF Z <> INT(Z) 
+	INPUT "ΔΙΑΛΕΞΕ ΤΥΠΟ ΣΟΥΤ (1: ΜΑΚΡΥΝΟ , 2: ΚΟΝΤΙΝΟ , 3 ΛΑΥ ΑΠ , 4¨:", Z
+	PRINT Z
+	WHILE  ((Z <> INT(Z))  OR ( Z <= 0 OR Z > 4))
+	   PRINT "ΛΑΘΟΣ, ΕΠΙΤΡΕΠΤΕΣ ΤΙΜΕΣ: 1 , 2 , 3 , 4"
+	   INPUT "ΔΙΑΛΕΞΕ ΣΟΥΤ!!", Z
+	END WHILE 
+           
+       # Ανάλογα με τον τύπο σουτ που επιλέχτηκε το πρόγραμμα
+       # θα ακολουθήσει διαφορετική ροή εκτέλεσης. Επειδή 
+       # υπάρχει κοινός κώδικας για τα jump shot τα ομαδοποιούμε
 
+	BEGIN CASE
+	  CASE Z =1 OR Z = 2
+	     PRINT "Έκανες JUMP SHOT!! για να δούμε θα μπεί;;" 
+                 IF (RAND > 0.341*(D/8) )   THEN
+		PRINT "ΑΣΤΟΧΗΣΕΣ"
+	        ELSE 
+		PRINT "ΜΕΣΑ!! ΚΑΛΟ ΣΟΥΤ!"
+	        END IF
+	  CASE Z = 3 OR Z = 4
+	     PRINT "Έκανες Lay UP ή set shot" 
+	END CASE 
+
+ 		
+	 
+	
 END SUBROUTINE
 
 # CPU Play
 
 SUBROUTINE CPU_PLAY() 
-PRINT "ΠΑΙΖΕΙ Ο ΗΥ"
-PRINT T
+PRINT "ΠΑΙΖΕΙ Ο COMPUTER"
+SAY  "PAIZO"
+Z1 = 10/4*RAND+1
+PRINT "DEBUG %% "; : PRINT "Z1:" ; : PRINT Z1
+IF Z1 > 2  THEN 
+  IF Z1 > 3 THEN
+    PRINT "SET SHOT"
+  ELSE 
+    PRINT "LAY UP"
+  END IF
+ELSE 
+  PRINT "JUMP SHOT"
+END IF
 END SUBROUTINE
 
 # Foul shooting
