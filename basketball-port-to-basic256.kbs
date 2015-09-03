@@ -1,12 +1,19 @@
 # Μετατροπή Basketball από VINTAGE BASIC σε BASIC 256
 # από aprekates@sch.gr  
 PRINT " ***** ΜΠΑΣΚΕΤ ****** " 
-SAY "BASKET KALATHOSFERISI"
+#SAY "BASKET KALATHOSFERISI"
 PRINT ""
-INPUT "ΟΝΟΜΑ ΤΗΣ ΑΝΤΙΠΑΛΗΣ ΟΜΑΔΑΣ: " , ANTIPALOS$
+PRINT "ΓΕΙΑ ΣΟΥ. ΕΓΩ Ο ΥΠΟΛΟΓΙΣΤΗΣ ΕΧΩ ΤΗΝ ΟΜΑΔΑ SUPERBITS, ΔΩΣΕ ΤΟ ΟΝΟΜΑ ΤΗΣ ΔΙΚΗΣ ΣΟΥ ΟΜΑΔΑΣ"
+INPUT "ΟΝΟΜΑ ΟΜΑΔΑΣ : " , ANTIPALOS$
 # PRINT ANTIPALOS$
-PRINT "ΤΖΑΜΠΟΛ!!!"
-SAY "JAMBOL!"
+PRINT : PRINT 
+PRINT " ************************************ "
+PRINT "              ΤΖΑΜΠΟΛ!!!              "
+PRINT "   SUPERBITS      V     ";
+PRINT ANTIPALOS$ 
+PRINT " ************************************ "
+PRINT : PRINT 
+#SAY "JAMBOL!"
 # Αρχίζει το μέτρημα του χρόνου, P ο παίχτης, Z τύπος του σουτ
 # D τύπος άμυνας
 GLOBAL T,P,Z,D
@@ -14,21 +21,43 @@ T = 1
 P = 0  
 Z = 0
 D = 7
+
+
+# ---------------- MAIN CONTROL LOGIG -----------
+
+RESULT = TZAMPOL(ANTIPALOS$)
+IF RESULT = 1 THEN 
+     S = HUMAN_PLAY() 
+     PRINT "S:" : PRINT S
+ELSE 
+     S = CPU_PLAY()
+    PRINT "S:" : PRINT S
+ENDIF
+
+PRINT "TELOS AGONA"
+PRINT "TELIKO SCORE" 
+
+# ---------------------------Τζάμπολ !
+
+FUNCTION TZAMPOL(ANTIPALOS$) 
+
+PRINT "DEBUG ## ..in TZAMPOL()"
+
 IF RAND > 3/5 THEN
 	PRINT "Η ομάδα του ΗΥ " ;
 	PRINT ANTIPALOS$ ; 
 	PRINT " πήρε το τζάμπολ"
-	CALL CPU_PLAY()
+	RETURN 2
 ELSE     	
-	PRINT "Πήραμε΅το Τζάμπολ!" 
-	CALL HUMAN_PLAY() 
+	PRINT "Η ομάδα σού πήρε το τζάμπολ." 
+	RETURN 1 
 ENDIF
 
+END FUNCTION 
 
+# -------------------------- Παίζει ο άνθρωπος
 
-# Human Play
-
-SUBROUTINE HUMAN_PLAY() 
+FUNCTION HUMAN_PLAY() 
 
 	PRINT "ΠΑΙΖΕΙ Ο ΑΝΘΡΩΠΟΣ"
 	PRINT "PEKSE"
@@ -59,25 +88,28 @@ SUBROUTINE HUMAN_PLAY()
  		
 	 
 	
-END SUBROUTINE
+END FUNCTION
 
-# CPU Play
+# ----------------------   Παίζει ο ΗΥ
 
-SUBROUTINE CPU_PLAY() 
+FUNCTION CPU_PLAY() 
 PRINT "ΠΑΙΖΕΙ Ο COMPUTER"
-SAY  "PAIZO"
+#SAY  "PAIZO ΕΓΩ"
 Z1 = 10/4*RAND+1
 PRINT "DEBUG %% "; : PRINT "Z1:" ; : PRINT Z1
 IF Z1 > 2  THEN 
   IF Z1 > 3 THEN
     PRINT "SET SHOT"
+#    IF  (7/D*RAND > 0.413) THEN
+#       PRINT "ASTOXOS O HY"
+#       CALL REBOUND
   ELSE 
     PRINT "LAY UP"
   END IF
 ELSE 
   PRINT "JUMP SHOT"
 END IF
-END SUBROUTINE
+END FUNCTION
 
 # Foul shooting
 
